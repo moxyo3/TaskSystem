@@ -1,0 +1,25 @@
+{
+  "name": "TaskSystem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moxyo3/TaskSystem.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moxyo3/TaskSystem/issues"
+  },
+  "homepage": "https://github.com/moxyo3/TaskSystem#readme",
+  "devDependencies": {
+    "ts-node": "^8.9.0",
+    "typescript": "^3.8.3"
+  }
+}
