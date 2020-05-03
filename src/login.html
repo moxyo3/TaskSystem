@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Task管理</title>
+    <script src="login.js"></script>
 </head>
 <body>
     <!-- header -->
     <header>
        <h2>Task管理システム</h2>
+       <nav>【管理ページ】</nav>
     </header>
     <table>
         <tr>
@@ -16,18 +18,20 @@
         </tr>
         <tr>
             <td>pass: </td>
-            <td><input type = "text" id ="pass"></td>
+            <td><input type = "password" id ="pass"></td>
         </tr>
         <tr>
-            <td><button onclick="hello()">ログイン</button></td>
+            <td><button onclick="loginCheck()">ログイン</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="createUser()">アカウント作成</button></td>
         </tr>
     </table>
     <hr>
-    <p>新規登録は<a href= "newAccount.html">こちら</a><p>
         <!-- footer -->
         <footer>
-            test
+           個人で作成したアプリケーションです。 
         </footer>
-        <script src="first.js"></script>
+
 </body>
 </html>
