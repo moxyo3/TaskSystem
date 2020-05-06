@@ -13,15 +13,15 @@ var db *sql.DB
 
 //フォーム入力された情報
 type UserInput struct {
-	UserId string `json:"userName"`
+	UserId string `json:"userId"`
 	Pass   string `json:"userPass"`
 }
 
 //DB情報
 type DBUser struct {
-	UserId     string `json: "userId"`
-	Pass       string `json: "userPass"`
-	MentorFlag bool   `json: "mentorFlag`
+	UserId     string
+	Pass       string
+	MentorFlag int
 }
 
 func main() {
@@ -55,6 +55,7 @@ func loginCheck(w http.ResponseWriter, r *http.Request) {
 	if err := db.QueryRow("SELECT * FROM users WHERE user_id=? AND pass=?", (&userInput).UserId, (&userInput).Pass).Scan(&user.UserId, &user.Pass, &user.MentorFlag); err != nil {
 		log.Fatal(err)
 	}
+	log.Print(user)
 	switch {
 	case err == sql.ErrNoRows:
 		log.Fatalln("アカウントが存在しません")
