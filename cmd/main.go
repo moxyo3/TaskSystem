@@ -25,7 +25,7 @@ type DBUser struct {
 }
 
 func main() {
-	http.Handle("/task/", http.StripPrefix("/task/", http.FileServer(http.Dir("../src"))))
+	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("../src"))))
 	http.HandleFunc("/loginCheck", loginCheck)
 
 	log.Println("start http server :8080")
@@ -53,16 +53,14 @@ func loginCheck(w http.ResponseWriter, r *http.Request) {
 
 	//userid,passが一致するものを検索
 	if err := db.QueryRow("SELECT * FROM users WHERE user_id=? AND pass=?", (&userInput).UserId, (&userInput).Pass).Scan(&user.UserId, &user.Pass, &user.MentorFlag); err != nil {
-		log.Fatal(err)
+		switch {
+		case err == sql.ErrNoRows:
+			log.Print("アカウントが存在しません")
+		case err != nil:
+			log.Fatal(err)
+		}
 	}
 	log.Print(user)
-	switch {
-	case err == sql.ErrNoRows:
-		log.Fatalln("アカウントが存在しません")
-	case err != nil:
-		log.Fatal(err)
-	}
-
 }
 
 func createUser(w http.ResponseWriter, r *http.Request) {
