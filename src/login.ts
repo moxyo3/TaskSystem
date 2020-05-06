@@ -1,35 +1,63 @@
 function loginCheck(){
-    const userName : HTMLInputElement =<HTMLInputElement>document.getElementById("name");
-    const userPass : HTMLInputElement =<HTMLInputElement>document.getElementById("pass");
+    const userId: HTMLInputElement =<HTMLInputElement>document.getElementById("userId");
+    const userPass : HTMLInputElement =<HTMLInputElement>document.getElementById("userPass");
 
-    const userInput = {
-        name : userName.value,
-        pass : userPass.value,
+    interface UserInput {
+        userId: string;
+        userPass: string;
     }
 
-    fetch("/login",{
+    const userInput: UserInput = {
+        userId: userId.value,
+        userPass : userPass.value,
+    }
+
+    fetch("/loginCheck",{
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
         },
         body: JSON.stringify(userInput),
-    }).then((response)=> {
+    }).then((response:any)=> {
         if(response.ok){
-            alert("ログインしました。")
+            alert("ログインします。")
         } else {
             alert("ログインに失敗しました")
         }
     }).catch((err) => {
         console.log(err);
     })
+
+    //
 }
 
 function createUser(){
-    const userName : HTMLInputElement =<HTMLInputElement>document.getElementById("name");
-    const userPass : HTMLInputElement =<HTMLInputElement>document.getElementById("pass");
+    const userId: HTMLInputElement =<HTMLInputElement>document.getElementById("userId");
+    const userPass : HTMLInputElement =<HTMLInputElement>document.getElementById("userPass");
+
+    interface UserInput {
+        userId: string;
+        userPass: string;
+    }
 
     const userCreate = {
-        name : userName.value,
-        pass : userPass.value,
+        userId: userId.value,
+        userPass : userPass.value,
     }
+    fetch("/createUser",{
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userCreate),
+    }).then((response)=> {
+        if(response.ok){
+            alert("アカウントを新規作成します。")
+        } else {
+            alert("アカウントの作成に失敗しました")
+        }
+    }).catch((err) => {
+        console.log(err);
+    })
+
 }

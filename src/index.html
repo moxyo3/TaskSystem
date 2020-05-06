@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Task管理</title>
+    <script src="login.js"></script>
+    <link rel="stylesheet" href="indexstyles.css">
+</head>
+<body>
+    <!-- header -->
+    <header>
+       <h2>Task管理システム</h2>
+    </header>
+
+    <div">
+    <table>
+        <tr>
+            <td>ユーザーID: </td>
+            <td><input type="text" id = "userId"></td>
+        </tr>
+        <tr>
+            <td>pass: </td>
+            <td><input type = "password" id ="userPass"></td>
+        </tr>
+        <tr>
+            <td><button onclick="loginCheck()">ログイン</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="createUser()">アカウント作成</button></td>
+        </tr>
+    </table>
+    </div>
+    <hr>
+        <!-- footer -->
+        <footer>
+           個人で作成したアプリケーションです。 
+        </footer>
+
+</body>
+</html>
