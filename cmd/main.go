@@ -55,7 +55,7 @@ func loginCheck(w http.ResponseWriter, r *http.Request) {
 	if err := db.QueryRow("SELECT * FROM users WHERE user_id=? AND pass=?", (&userInput).UserId, (&userInput).Pass).Scan(&user.UserId, &user.Pass, &user.MentorFlag); err != nil {
 		switch {
 		case err == sql.ErrNoRows:
-			log.Print("アカウントが存在しません")
+			log.Fatal("アカウントが存在しません")
 		case err != nil:
 			log.Fatal(err)
 		}
