@@ -36,7 +36,7 @@ func loginCheck(w http.ResponseWriter, r *http.Request) {
 	log.Print(userInput)
 
 	//dbから一致したレコードを格納
-	var user DBUser = DBUser{}
+	var user DBUser
 
 	//userid,passが一致するものを検索
 	if err := db.QueryRow("SELECT * FROM users WHERE user_id=? AND pass=?", (&userInput).UserId, (&userInput).Pass).Scan(&user.UserId, &user.Pass, &user.MentorFlag); err != nil {
