@@ -12,7 +12,8 @@ import (
 var db *sql.DB
 
 func main() {
-	db, err := sql.Open("mysql", "moxyo3:moxyo3@/test_db")
+	var err error
+	db, err = sql.Open("mysql", "moxyo3:moxyo3@/test_db")
 	if err != nil {
 		log.Print("DB接続エラー")
 	}
@@ -40,13 +41,14 @@ func loginCheck(w http.ResponseWriter, r *http.Request) {
 
 	//userid,passが一致するものを検索
 	if err := db.QueryRow("SELECT * FROM users WHERE user_id=? AND pass=?", (&userInput).UserId, (&userInput).Pass).Scan(&user.UserId, &user.Pass, &user.MentorFlag); err != nil {
-		if err == sql.ErrNoRows {
-			log.Print("アカウントが存在しません")
-		} else {
-			log.Print(err)
+		switch {
+		case err == sql.ErrNoRows:
+			http.Error(w, "アカウント認証に失敗しました", 401)
+		case err != nil:
+			http.Error(w, "エラー", 500)
 		}
-		log.Print(user)
 	}
+	log.Print(user)
 }
 
 /*func createUser(w http.ResponseWriter, r *http.Request) {

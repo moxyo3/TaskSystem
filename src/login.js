@@ -13,16 +13,9 @@ function loginCheck() {
         body: JSON.stringify(userInput)
     }).then(function (response) {
         if (response.ok) {
-            alert("ログインします。");
-            viewMainPage();
-        }
-        else {
-            alert("ログインに失敗しました");
+            window.location.href = 'main.html';
         }
     })["catch"](function (err) {
         console.log(err);
     });
-}
-function viewMainPage() {
-    window.location.href = 'main.html';
 }

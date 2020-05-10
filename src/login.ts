@@ -20,17 +20,9 @@ function loginCheck(): void {
         body: JSON.stringify(userInput),
     }).then((response:any)=> {
         if(response.ok){
-            alert("ログインします。");
-            viewMainPage();
-        } else {
-            alert("ログインに失敗しました");
+            window.location.href = 'main.html';
         }
     }).catch((err) => {
         console.log(err);
     })
-
-}
-
-function viewMainPage(){
-    window.location.href = 'main.html';
 }
