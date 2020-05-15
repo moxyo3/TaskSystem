@@ -20,9 +20,13 @@ function loginCheck(): void {
         body: JSON.stringify(userInput),
     }).then((response:any)=> {
         if(response.ok){
+            return response.json();
+        }}).then(data => {
+        //loginOK
             window.location.href = 'main.html';
-        }
-    }).catch((err) => {
-        console.log(err);
-    })
+        //loginNG
+            console.log(data.message);
+        }).catch((err) => {
+            console.log(err);
+        })
 }

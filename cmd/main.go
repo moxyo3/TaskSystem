@@ -15,7 +15,7 @@ func main() {
 	var err error
 	db, err = sql.Open("mysql", "moxyo3:moxyo3@/test_db")
 	if err != nil {
-		log.Print("DB接続エラー")
+		log.Print("DB error")
 	}
 
 	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("../src"))))
@@ -43,12 +43,13 @@ func loginCheck(w http.ResponseWriter, r *http.Request) {
 	if err := db.QueryRow("SELECT * FROM users WHERE user_id=? AND pass=?", (&userInput).UserId, (&userInput).Pass).Scan(&user.UserId, &user.Pass, &user.MentorFlag); err != nil {
 		switch {
 		case err == sql.ErrNoRows:
-			http.Error(w, "アカウント認証に失敗しました", 401)
+			http.Error(w, "account error", 401)
 		case err != nil:
-			http.Error(w, "エラー", 500)
+			http.Error(w, "error", 500)
 		}
 	}
 	log.Print(user)
+	//userInputとDBUser比較
 }
 
 /*func createUser(w http.ResponseWriter, r *http.Request) {

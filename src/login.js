@@ -13,8 +13,13 @@ function loginCheck() {
         body: JSON.stringify(userInput)
     }).then(function (response) {
         if (response.ok) {
-            window.location.href = 'main.html';
+            return response.json();
         }
+    }).then(function (data) {
+        //loginOK
+        window.location.href = 'main.html';
+        //loginNG
+        console.log(data.message);
     })["catch"](function (err) {
         console.log(err);
     });

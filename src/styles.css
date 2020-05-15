@@ -1,0 +1,30 @@
+div#header{
+    background-color: green;
+    height: 80px;
+    width: 800px;
+}
+
+div#content {
+    background-color: black;
+    height: 600px;
+    width: 800px;
+}
+div#side{
+    background-color: aqua;
+    height: 600px;
+    width: 250px;
+    float: left;
+}
+
+div#main {
+    background-color: orange;
+    height: 600px;
+    width: 550px;
+    float: left;
+}
+
+div#footer {
+    background-color: beige;
+    height: 60px;
+    width: 800px;
+}
